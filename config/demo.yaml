@@ -1,0 +1,20 @@
+DataLoaderTransformer:
+  input_path: "../data/input_50K.csv"
+  output_parquet_path: "../data/input_converted_50K.parquet"
+  n_workers: 1
+  threads_per_worker: 2
+  memory_limit: "6GB"
+  spill_dir: "./tmp/dask-spill"
+  target_partitions: 10
+
+ScalableVGMMNormalizer:
+  n_clusters: 10
+  eps: 0.005
+  weight_concentration_prior_type: "dirichlet_process"
+  weight_concentration_prior: 0.001
+  max_iter: 100
+  n_init: 1
+  random_state: 42
+
+continuous_columns:
+  - "Amount"
